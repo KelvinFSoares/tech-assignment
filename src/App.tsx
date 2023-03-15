@@ -1,5 +1,7 @@
 import preview from '@/assets/preview/carbon.svg';
 import { Button } from 'antd';
+import { AircraftCard } from './components/AircraftCard/AircraftCard';
+import { Aircraft } from './models/aircraft';
 import themeConfig from './utils/utils';
 
 function App() {
@@ -8,6 +10,7 @@ function App() {
       <h1 className="text-4xl font-bold text-linen text-center ">
         Hello World
       </h1>
+      <AircraftCard aircraft={new Aircraft('KEL321', 'A380', 100, 'CPV')} />
       <Button
         type="primary"
         className=" bg-teal-600 border-teal-600 text-white font-bold rounded-none "
