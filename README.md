@@ -1,18 +1,6 @@
-
-# tw-antd-start-react-ts
-
-boilerplate -  react + tailwindcss + ant-design + typescript
-
-# Created with reactjs, tailwindcss, ant-design
-
-
-## Screenshots
-
-![App Screenshot](https://raw.githubusercontent.com/lchenrique/tw-antd-start-react-ts/897028585c74306af46e6e7f137fd17a6179c192/src/assets/preview/carbon.svg)
-
+## Tech stack: Vite + Vitest + React + TS + Tailwind + Ant design + Testing Library
 
 ## Running locally
-
 
 Clone the project
 
@@ -37,14 +25,3 @@ Start the project
 ```bash
   npm run start or yarn start
 ```
-
-
-## Authors
-
-- [@lchenrique](https://github.com/lchenrique)
-
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
