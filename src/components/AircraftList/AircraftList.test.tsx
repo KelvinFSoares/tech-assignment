@@ -14,13 +14,23 @@ describe('tests the AircraftList component', () => {
 
   it('should show all aircrafts', () => {
     const aircrafts = [
-      new Aircraft('AS1001', 'A320', 120, 'CPV'),
-      new Aircraft('AS1002', 'A380', 320, 'JPA'),
+      {
+        ident: 'AS1001',
+        type: 'A320',
+        economySeats: 120,
+        base: 'CPV',
+      } as IAircraft,
+      {
+        ident: 'AS1002',
+        type: 'A380',
+        economySeats: 320,
+        base: 'JPA',
+      } as IAircraft,
     ];
     render(<AircraftList aircrafts={aircrafts} />);
 
     aircrafts.map((aircraft) => {
-      expect(screen.getByText(aircraft.getIdent())).toBeInTheDocument();
+      expect(screen.getByText(aircraft.ident)).toBeInTheDocument();
     });
   });
 });

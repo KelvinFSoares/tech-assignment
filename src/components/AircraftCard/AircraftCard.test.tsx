@@ -8,7 +8,16 @@ import { IAircraft } from '../../interfaces/aircraft';
 describe('tests the AircraftCard component', () => {
   it('should show aircraft ident letters', () => {
     render(
-      <AircraftCard aircraft={new Aircraft('AS1001', 'A320', 100, 'EGKK')} />
+      <AircraftCard
+        aircraft={
+          {
+            ident: 'AS1001',
+            type: 'A320',
+            economySeats: 120,
+            base: 'CPV',
+          } as IAircraft
+        }
+      />
     );
     expect(screen.getByText('AS1001')).toBeInTheDocument();
   });
@@ -21,7 +30,14 @@ describe('tests the AircraftCard component', () => {
     const user = userEvent.setup();
     render(
       <AircraftCard
-        aircraft={new Aircraft('AS1001', 'A320', 100, 'EGKK')}
+        aircraft={
+          {
+            ident: 'AS1001',
+            type: 'A320',
+            economySeats: 120,
+            base: 'CPV',
+          } as IAircraft
+        }
         onClick={onClick}
       />
     );

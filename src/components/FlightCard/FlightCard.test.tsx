@@ -10,7 +10,15 @@ describe('tests the FlightCard component', () => {
     render(
       <FlightCard
         flight={
-          new Flight('AS1001', 21500, 26100, '6:00', '7:15', 'LFSB', 'LFMN')
+          {
+            ident: 'AS1001',
+            departureTime: 21500,
+            arrivalTime: 26100,
+            readableDeparture: '6:00',
+            readableArrival: '7:15',
+            origin: 'LFSB',
+            destination: 'LFMN',
+          } as IFlight
         }
       />
     );
@@ -27,7 +35,15 @@ describe('tests the FlightCard component', () => {
     render(
       <FlightCard
         flight={
-          new Flight('AS1001', 21500, 26100, '6:00', '7:15', 'LFSB', 'LFMN')
+          {
+            ident: 'AS1001',
+            departureTime: 21500,
+            arrivalTime: 26100,
+            readableDeparture: '6:00',
+            readableArrival: '7:15',
+            origin: 'LFSB',
+            destination: 'LFMN',
+          } as IFlight
         }
         onClick={onClick}
       />
