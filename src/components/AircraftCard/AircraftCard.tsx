@@ -16,8 +16,9 @@ export const AircraftCard: FunctionComponent<AircraftCardProps> = ({
       style={{ width: 300 }}
       onClick={onClick}
       data-testid="aircraft-card-element"
+      className="mt-4"
     >
-      <p>{aircraft.getIdent()}</p>
+      <p className="text-center font-bold">{aircraft.getIdent()}</p>
     </Card>
   );
 };
