@@ -16,7 +16,7 @@ export const AircraftList: FunctionComponent<AircraftListProps> = ({
   return isAircraftListEmpty ? (
     <p>Theres no aircrafts available at this moment</p>
   ) : (
-    <ul>
+    <ul className="flex flex-col items-center h-screen overflow-y-auto">
       {aircrafts?.map((aircraft) => (
         <AircraftCard
           aircraft={aircraft}

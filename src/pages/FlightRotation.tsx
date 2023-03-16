@@ -1,4 +1,5 @@
 import { AircraftList } from '@/components/AircraftList/AircraftList';
+import { AircraftRotationList } from '@/components/AircraftRotationList/AircraftRotationList';
 import { FlightList } from '@/components/FlightList/FlightList';
 import { useAircraftRotation } from '@/hooks/useAircraftRotation';
 import { IAircraft } from '@/models/aircraft';
@@ -69,7 +70,12 @@ export const FlightRotation = () => {
             onItemClick={setSelectedAircraft}
           />
         </div>
-        <div className="border">02</div>
+        <div className="border">
+          <AircraftRotationList
+            flights={rotation}
+            onItemClick={(flight: IFlight) => console.log(flight.ident)}
+          />
+        </div>
         <div className="border">
           <FlightList flights={flightsData} onItemClick={addFlightToRotation} />
         </div>

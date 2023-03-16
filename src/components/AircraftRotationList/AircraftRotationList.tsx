@@ -2,15 +2,14 @@ import React, { FunctionComponent } from 'react';
 import { IFlight } from '@/models/flight';
 import { FlightCard } from '../FlightCard/FlightCard';
 
-type FlightListProps = {
+type AicraftRotationListProps = {
   flights: IFlight[];
   onItemClick: (flight: IFlight) => void;
 };
 
-export const FlightList: FunctionComponent<FlightListProps> = ({
-  flights,
-  onItemClick,
-}) => {
+export const AircraftRotationList: FunctionComponent<
+  AicraftRotationListProps
+> = ({ flights, onItemClick }) => {
   const isFlightListEmpty = flights?.length === 0;
 
   return isFlightListEmpty ? (
@@ -18,7 +17,11 @@ export const FlightList: FunctionComponent<FlightListProps> = ({
   ) : (
     <ul className="flex flex-col items-center h-screen overflow-y-auto">
       {flights?.map((flight) => (
-        <FlightCard flight={flight} key={flight.ident} onClick={onItemClick} />
+        <FlightCard
+          flight={flight}
+          key={flight.ident}
+          onClick={(flight) => onItemClick(flight)}
+        />
       ))}
     </ul>
   );

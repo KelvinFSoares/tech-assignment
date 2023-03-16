@@ -6,7 +6,7 @@ type AircraftRotation = {
   selectedAircraft: IAircraft;
   setSelectedAircraft: (aircraft: IAircraft) => void;
   rotation: IFlight[];
-  addFlightToRotation: (flight: IFlight) => boolean;
+  addFlightToRotation: (flight: IFlight) => void;
 };
 
 export const useAircraftRotation = (): AircraftRotation => {
@@ -23,7 +23,6 @@ export const useAircraftRotation = (): AircraftRotation => {
     rotation: rotation,
     addFlightToRotation: (flight: IFlight) => {
       setRotation([...rotation, flight]);
-      return true;
     },
   };
 };

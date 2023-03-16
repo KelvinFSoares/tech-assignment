@@ -4,7 +4,7 @@ import { IFlight } from '@/models/flight';
 
 type FlightCardProps = {
   flight: IFlight;
-  onClick?: (flight: IFlight) => boolean;
+  onClick?: (flight: IFlight) => void;
 };
 
 export const FlightCard: FunctionComponent<FlightCardProps> = ({
