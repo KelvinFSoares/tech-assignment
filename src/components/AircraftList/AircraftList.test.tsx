@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import { AircraftList } from './AircraftList';
-import { Aircraft } from '../../models/aircraft';
+import { IAircraft } from '../../interfaces/aircraft';
 
 describe('tests the AircraftList component', () => {
   it('should show empty message if no aircrafts were fetched', () => {

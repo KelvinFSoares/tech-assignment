@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { Card } from 'antd';
-import { Flight } from '@/models/flight';
+import { IFlight } from '@/interfaces/flight';
 
 type FlightCardProps = {
-  flight: Flight;
+  flight: IFlight;
   onClick?: () => {};
 };
 
@@ -18,14 +18,14 @@ export const FlightCard: FunctionComponent<FlightCardProps> = ({
       data-testid="flight-card-element"
       className="mt-4"
     >
-      <p className="text-center font-bold">{flight.getIdent()}</p>
+      <p className="text-center font-bold">{flight.ident}</p>
       <div className="flex justify-between">
-        <span>{flight.getOrigin()}</span>
-        <span>{flight.getDestination()}</span>
+        <span>{flight.origin}</span>
+        <span>{flight.destination}</span>
       </div>
       <div className="flex justify-between">
-        <span>{flight.getReadableDeparture()}</span>
-        <span>{flight.getReadableArrival()}</span>
+        <span>{flight.readableDeparture}</span>
+        <span>{flight.readableArrival}</span>
       </div>
     </Card>
   );

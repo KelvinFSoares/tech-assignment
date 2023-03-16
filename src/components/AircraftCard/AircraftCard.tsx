@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { Card } from 'antd';
-import { Aircraft } from '@/models/aircraft';
+import { IAircraft } from '@/interfaces/aircraft';
 
 type AircraftCardProps = {
-  aircraft: Aircraft;
+  aircraft: IAircraft;
   onClick?: () => {};
 };
 
@@ -18,7 +18,7 @@ export const AircraftCard: FunctionComponent<AircraftCardProps> = ({
       data-testid="aircraft-card-element"
       className="mt-4"
     >
-      <p className="text-center font-bold">{aircraft.getIdent()}</p>
+      <p className="text-center font-bold">{aircraft.ident}</p>
     </Card>
   );
 };
