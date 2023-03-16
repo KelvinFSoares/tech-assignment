@@ -3,7 +3,7 @@ import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import { AircraftCard } from './AircraftCard';
-import { IAircraft } from '../../interfaces/aircraft';
+import { IAircraft } from '../../models/aircraft';
 
 describe('tests the AircraftCard component', () => {
   it('should show aircraft ident letters', () => {

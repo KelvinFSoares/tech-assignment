@@ -1,11 +1,18 @@
 import { AircraftList } from '@/components/AircraftList/AircraftList';
 import { FlightList } from '@/components/FlightList/FlightList';
-import { IAircraft } from '@/interfaces/aircraft';
-import { IFlight } from '@/interfaces/flight';
+import { useAircraftRotation } from '@/hooks/useAircraftRotation';
+import { IAircraft } from '@/models/aircraft';
+import { IFlight } from '@/models/flight';
 import Axios from 'axios';
 import { useQueries } from 'react-query';
 
 export const FlightRotation = () => {
+  const {
+    selectedAircraft,
+    rotation,
+    setSelectedAircraft,
+    addFlightToRotation,
+  } = useAircraftRotation();
   const [aircraftQuery, flightQuery] = useQueries([
     {
       queryKey: ['aircraft', 1],
@@ -52,16 +59,19 @@ export const FlightRotation = () => {
 
   return (
     <div className="flex justify-center items-center flex-col h-screen space-y-5 bg-dark-purple">
-      <h1 className="text-4xl font-bold text-linen text-center ">
-        Hello World
-      </h1>
+      <p className="text-center text-linen mt-48 mb-8">
+        Rotation of: {selectedAircraft.ident}
+      </p>
       <div className="container mx-auto grid grid-cols-3 gap-4">
         <div className="border">
-          <AircraftList aircrafts={aircraftData} />
+          <AircraftList
+            aircrafts={aircraftData}
+            onItemClick={setSelectedAircraft}
+          />
         </div>
         <div className="border">02</div>
         <div className="border">
-          <FlightList flights={flightsData} />
+          <FlightList flights={flightsData} onItemClick={addFlightToRotation} />
         </div>
       </div>
     </div>

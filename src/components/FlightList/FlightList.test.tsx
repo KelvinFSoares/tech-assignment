@@ -2,7 +2,7 @@ import { describe, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import { FlightList } from './FlightList';
-import { IFlight } from '../../interfaces/flight';
+import { IFlight } from '../../models/flight';
 
 describe('tests the FlightList component', () => {
   it('should show empty message if no flights were available', () => {

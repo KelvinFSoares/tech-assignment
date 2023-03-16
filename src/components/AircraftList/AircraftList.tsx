@@ -1,13 +1,15 @@
 import React, { FunctionComponent } from 'react';
-import { IAircraft } from '@/interfaces/aircraft';
+import { IAircraft } from '@/models/aircraft';
 import { AircraftCard } from '../AircraftCard/AircraftCard';
 
 type AircraftListProps = {
   aircrafts: IAircraft[];
+  onItemClick: (aircraft: IAircraft) => void;
 };
 
 export const AircraftList: FunctionComponent<AircraftListProps> = ({
   aircrafts,
+  onItemClick,
 }) => {
   const isAircraftListEmpty = aircrafts?.length === 0;
 
@@ -16,7 +18,11 @@ export const AircraftList: FunctionComponent<AircraftListProps> = ({
   ) : (
     <ul>
       {aircrafts?.map((aircraft) => (
-        <AircraftCard aircraft={aircraft} key={aircraft.ident} />
+        <AircraftCard
+          aircraft={aircraft}
+          key={aircraft.ident}
+          onClick={onItemClick}
+        />
       ))}
     </ul>
   );

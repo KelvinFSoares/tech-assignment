@@ -3,7 +3,7 @@ import { describe, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import { FlightCard } from './FlightCard';
-import { IFlight } from '../../interfaces/flight';
+import { IFlight } from '../../models/flight';
 
 describe('tests the FlightCard component', () => {
   it('should show flight informations', () => {

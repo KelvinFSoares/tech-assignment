@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { Card } from 'antd';
-import { IFlight } from '@/interfaces/flight';
+import { IFlight } from '@/models/flight';
 
 type FlightCardProps = {
   flight: IFlight;
-  onClick?: () => {};
+  onClick?: (flight: IFlight) => boolean;
 };
 
 export const FlightCard: FunctionComponent<FlightCardProps> = ({
@@ -14,7 +14,7 @@ export const FlightCard: FunctionComponent<FlightCardProps> = ({
   return (
     <Card
       style={{ width: 300 }}
-      onClick={onClick}
+      onClick={() => onClick(flight)}
       data-testid="flight-card-element"
       className="mt-4"
     >
