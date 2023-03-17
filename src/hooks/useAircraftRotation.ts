@@ -1,5 +1,6 @@
 import { IAircraft } from '@/models/aircraft';
 import { IFlight } from '@/models/flight';
+import { addFlightToRotationList } from '@/utils/aircraftRotationUtils';
 import { useState } from 'react';
 
 type AircraftRotation = {
@@ -7,6 +8,7 @@ type AircraftRotation = {
   setSelectedAircraft: (aircraft: IAircraft) => void;
   rotation: IFlight[];
   addFlightToRotation: (flight: IFlight) => void;
+  removeFlightFromRotation: (flight: IFlight) => void;
 };
 
 export const useAircraftRotation = (): AircraftRotation => {
@@ -22,7 +24,16 @@ export const useAircraftRotation = (): AircraftRotation => {
     },
     rotation: rotation,
     addFlightToRotation: (flight: IFlight) => {
-      setRotation([...rotation, flight]);
+      setRotation([...addFlightToRotationList(flight, rotation)]);
+    },
+    removeFlightFromRotation: (flight: IFlight) => {
+      // check if the last flight, if so remove it
+      if (flight.ident === rotation[rotation.length - 1].ident) {
+        setRotation([...rotation.slice(0, -1)]);
+      } else {
+        console.log('You can remove only the last element');
+      }
+      return;
     },
   };
 };
