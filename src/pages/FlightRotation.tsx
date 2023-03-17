@@ -5,13 +5,16 @@ import { FlightList } from '@/components/FlightList/FlightList';
 import { useAircraftRotation } from '@/hooks/useAircraftRotation';
 import { transformAircraft, transformFlight } from '@/utils/transformers';
 import { Space } from 'antd';
+import { useEffect } from 'react';
 import { useQueries } from 'react-query';
 
 export const FlightRotation = () => {
   const {
     selectedAircraft,
+    availableFlights,
     rotation,
     setSelectedAircraft,
+    setAvailableFlights,
     addFlightToRotation,
     removeFlightFromRotation,
   } = useAircraftRotation();
@@ -28,10 +31,20 @@ export const FlightRotation = () => {
       queryKey: ['flight', 1],
       queryFn: () =>
         fetchFlights().then((res) =>
-          res.data ? res.data.map(transformFlight) : []
+          setAvailableFlights(res.data ? res.data.map(transformFlight) : [])
         ),
     },
   ]);
+
+  useEffect(() => {
+    return () => {
+      setSelectedAircraft(
+        aircraftQuery.data && aircraftQuery.data.length > 0
+          ? aircraftQuery.data[0]
+          : {}
+      );
+    };
+  }, [aircraftQuery.data]);
 
   return (
     <div className="bg-dark-purple">
@@ -58,7 +71,7 @@ export const FlightRotation = () => {
         <div className="border col-span-3">
           <h3 className="text-center text-linen mt-4 mb-8">Flights</h3>
           <FlightList
-            flights={flightQuery.data}
+            flights={availableFlights}
             onItemClick={addFlightToRotation}
           />
         </div>

@@ -31,7 +31,7 @@ export const addElementAt = (
 ): any[] => {
   if (insertAt <= list.length) {
     list.splice(insertAt, 0, element);
-    return [...list];
+    return list;
   }
   return list;
 };
