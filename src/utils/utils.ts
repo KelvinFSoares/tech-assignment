@@ -8,8 +8,20 @@ export const isEmpty = (list: any[]): boolean => {
   return list.length === 0;
 };
 
+export const isLastIndex = (list: any[], index: number): boolean => {
+  return index === list.length - 1;
+};
+
 export const isLastElement = (list: any[], element: any): boolean => {
   return list.length > 0 && list[list.length - 1] === element;
+};
+
+export const getFirstElement = (list: any[]): any => {
+  return list.length > 0 ? list[0] : [];
+};
+
+export const getLastElement = (list: any[]): any => {
+  return list.length > 0 ? list[list.length - 1] : [];
 };
 
 export const addElementAt = (
@@ -18,7 +30,8 @@ export const addElementAt = (
   list: any[]
 ): any[] => {
   if (insertAt <= list.length) {
-    return [...list.splice(insertAt, 0, element)];
+    list.splice(insertAt, 0, element);
+    return [...list];
   }
   return list;
 };

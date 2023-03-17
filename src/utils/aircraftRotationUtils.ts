@@ -1,60 +1,49 @@
 import { IFlight } from '@/models/flight';
 import {
-  areFlightsNotThroughMidnight,
   areFlightsLocationConnected,
   areFlightsTimesNotOverlapping,
   areFlightsRespectingTimeline,
   areFlightsRespectingTurnaround,
+  isFlightThroughMidnight,
 } from './flightUtils';
-import { isEmpty, addElementAt } from './utils';
+import {
+  isEmpty,
+  addElementAt,
+  getFirstElement,
+  getLastElement,
+} from './utils';
 
 const turnAroundRequiredTimeSecs = 1200;
 
-const canFlightsBeGrouped = (flightA: IFlight, flightB: IFlight): number => {
+const canFlightsBeGrouped = (flightA: IFlight, flightB: IFlight): boolean => {
   if (
-    areFlightsNotThroughMidnight(flightA, flightB) &&
     areFlightsLocationConnected(flightA, flightB) &&
     areFlightsTimesNotOverlapping(flightA, flightB) &&
     areFlightsRespectingTimeline(flightA, flightB) &&
     areFlightsRespectingTurnaround(flightA, flightB, turnAroundRequiredTimeSecs)
   ) {
-    return -1;
+    return true;
   }
-  if (
-    areFlightsNotThroughMidnight(flightB, flightA) &&
-    areFlightsLocationConnected(flightB, flightA) &&
-    areFlightsTimesNotOverlapping(flightB, flightA) &&
-    areFlightsRespectingTimeline(flightB, flightA) &&
-    areFlightsRespectingTurnaround(flightB, flightA, turnAroundRequiredTimeSecs)
-  ) {
-    return +1;
-  }
-  return 0;
+  return false;
 };
 
 export const addFlightToRotationList = (
   newFlight: IFlight,
   rotationList: IFlight[]
 ) => {
+  if (isFlightThroughMidnight(newFlight)) return rotationList;
   if (isEmpty(rotationList)) {
     return [...rotationList, newFlight];
   } else {
-    let comparationResult = 0;
-    rotationList.map((flight, index) => {
-      comparationResult = canFlightsBeGrouped(flight, newFlight);
-      console.log(
-        'comparation result => ',
-        comparationResult,
-        flight.ident,
-        newFlight.ident
-      );
-      if (comparationResult < 0) {
-        return addElementAt(index + 1, newFlight, rotationList);
-      }
-      if (comparationResult > 0) {
-        return addElementAt(index - 1, newFlight, rotationList);
-      }
-    });
+    const firstRotationFlight = getFirstElement(rotationList);
+    const lastRotationFlight = getLastElement(rotationList);
+
+    if (canFlightsBeGrouped(newFlight, firstRotationFlight)) {
+      return addElementAt(0, newFlight, rotationList);
+    }
+    if (canFlightsBeGrouped(lastRotationFlight, newFlight)) {
+      return addElementAt(rotationList.length, newFlight, rotationList);
+    }
   }
   return rotationList;
 };

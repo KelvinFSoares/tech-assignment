@@ -1,11 +1,10 @@
+import { fetchAircrafts, fetchFlights } from '@/Api';
 import { AircraftList } from '@/components/AircraftList/AircraftList';
 import { AircraftRotationList } from '@/components/AircraftRotationList/AircraftRotationList';
 import { FlightList } from '@/components/FlightList/FlightList';
 import { useAircraftRotation } from '@/hooks/useAircraftRotation';
-import { IAircraft } from '@/models/aircraft';
-import { IFlight } from '@/models/flight';
 import { transformAircraft, transformFlight } from '@/utils/transformers';
-import Axios from 'axios';
+import { Space } from 'antd';
 import { useQueries } from 'react-query';
 
 export const FlightRotation = () => {
@@ -21,44 +20,50 @@ export const FlightRotation = () => {
     {
       queryKey: ['aircraft', 1],
       queryFn: () =>
-        Axios.get(
-          'https://recruiting-assessment.alphasights.com/api/aircrafts'
-        ).then((res) => res.data.map(transformAircraft)),
+        fetchAircrafts().then((res) =>
+          res.data ? res.data.map(transformAircraft) : []
+        ),
     },
     {
-      queryKey: ['flight', 2],
+      queryKey: ['flight', 1],
       queryFn: () =>
-        Axios.get(
-          'https://recruiting-assessment.alphasights.com/api/flights'
-        ).then((res) => res.data.map(transformFlight)),
+        fetchFlights().then((res) =>
+          res.data ? res.data.map(transformFlight) : []
+        ),
     },
   ]);
 
   return (
-    <div className="flex justify-center items-center flex-col h-screen space-y-5 bg-dark-purple">
-      <p className="text-center text-linen mt-48 mb-8">
-        Rotation of: {selectedAircraft.ident}
-      </p>
-      <div className="container mx-auto grid grid-cols-3 gap-4">
+    <div className="bg-dark-purple">
+      <Space direction="vertical" size={12} className="mt-52"></Space>
+      <div className="container mx-auto grid grid-cols-5 gap-4">
         <div className="border">
+          <h3 className="text-center text-linen mt-4 mb-8">Aircrafts</h3>
           <AircraftList
             aircrafts={aircraftQuery.data}
             onItemClick={setSelectedAircraft}
           />
         </div>
         <div className="border">
+          {selectedAircraft.ident && (
+            <h3 className="text-center text-linen mt-4 mb-8">
+              Rotation: {selectedAircraft.ident}
+            </h3>
+          )}
           <AircraftRotationList
             flights={rotation}
             onItemClick={removeFlightFromRotation}
           />
         </div>
-        <div className="border">
+        <div className="border col-span-3">
+          <h3 className="text-center text-linen mt-4 mb-8">Flights</h3>
           <FlightList
             flights={flightQuery.data}
             onItemClick={addFlightToRotation}
           />
         </div>
       </div>
+      <div className="border w-100"></div>
     </div>
   );
 };

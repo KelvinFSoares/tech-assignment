@@ -13,10 +13,10 @@ export const FlightCard: FunctionComponent<FlightCardProps> = ({
 }) => {
   return (
     <Card
-      style={{ width: 300 }}
+      style={{ minWidth: 200 }}
       onClick={() => onClick(flight)}
       data-testid="flight-card-element"
-      className="mt-4"
+      className="mt-4 cursor-pointer"
     >
       <p className="text-center font-bold">{flight.ident}</p>
       <div className="flex justify-between">

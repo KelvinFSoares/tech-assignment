@@ -13,10 +13,10 @@ export const AircraftList: FunctionComponent<AircraftListProps> = ({
 }) => {
   const isAircraftListEmpty = aircrafts?.length === 0;
 
-  return isAircraftListEmpty ? (
+  return !aircrafts || isAircraftListEmpty ? (
     <p>Theres no aircrafts available at this moment</p>
   ) : (
-    <ul className="flex flex-col items-center h-screen overflow-y-auto">
+    <ul className="flex flex-col items-center">
       {aircrafts?.map((aircraft) => (
         <AircraftCard
           aircraft={aircraft}

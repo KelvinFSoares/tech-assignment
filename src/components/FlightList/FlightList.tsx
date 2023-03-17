@@ -13,13 +13,13 @@ export const FlightList: FunctionComponent<FlightListProps> = ({
 }) => {
   const isFlightListEmpty = flights?.length === 0;
 
-  return isFlightListEmpty ? (
+  return !flights || isFlightListEmpty ? (
     <p>Theres no flights available at this moment</p>
   ) : (
-    <ul className="flex flex-col items-center h-screen overflow-y-auto">
-      {flights?.map((flight) => (
+    <div className="flex flex-wrap justify-around overflow-auto">
+      {flights.map((flight: IFlight) => (
         <FlightCard flight={flight} key={flight.ident} onClick={onItemClick} />
       ))}
-    </ul>
+    </div>
   );
 };

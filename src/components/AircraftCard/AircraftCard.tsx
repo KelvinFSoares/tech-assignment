@@ -13,10 +13,10 @@ export const AircraftCard: FunctionComponent<AircraftCardProps> = ({
 }) => {
   return (
     <Card
-      style={{ width: 300 }}
+      style={{ minWidth: 200 }}
       onClick={() => onClick(aircraft)}
       data-testid="aircraft-card-element"
-      className="mt-4"
+      className="mt-4 cursor-pointer"
     >
       <p className="text-center font-bold">{aircraft.ident}</p>
     </Card>
