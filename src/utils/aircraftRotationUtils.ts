@@ -1,24 +1,22 @@
-import { IFlight } from '@/models/flight';
+import { IFlight } from '@/models/flight'
 import {
   areFlightsLocationConnected,
   areFlightsTimesNotOverlapping,
   areFlightsRespectingTimeline,
   areFlightsRespectingTurnaround,
-} from './flightUtils';
-
-const turnAroundRequiredTimeSecs = 1200;
+} from './flightUtils'
 
 export const canFlightsBeGrouped = (
   flightA: IFlight,
-  flightB: IFlight
+  flightB: IFlight,
 ): boolean => {
   if (
     areFlightsLocationConnected(flightA, flightB) &&
     areFlightsTimesNotOverlapping(flightA, flightB) &&
     areFlightsRespectingTimeline(flightA, flightB) &&
-    areFlightsRespectingTurnaround(flightA, flightB, turnAroundRequiredTimeSecs)
+    areFlightsRespectingTurnaround(flightA, flightB)
   ) {
-    return true;
+    return true
   }
-  return false;
-};
+  return false
+}

@@ -18,7 +18,9 @@
     "rc-virtual-list": "^3.4.13",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-query": "^3.39.3"
+    "react-query": "^3.39.3",
+    "react-toastify": "^9.1.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",

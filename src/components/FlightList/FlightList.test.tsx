@@ -1,16 +1,28 @@
-import { describe, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
 
-import { FlightList } from './FlightList';
-import { IFlight } from '../../models/flight';
+import { FlightList } from './FlightList'
+import { IFlight } from '@/models/flight'
 
 describe('tests the FlightList component', () => {
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      value: vi.fn(() => {
+        return {
+          matches: true,
+          addListener: vi.fn(),
+          removeListener: vi.fn(),
+        }
+      }),
+    })
+  })
+
   it('should show empty message if no flights were available', () => {
-    render(<FlightList flights={[]} />);
+    render(<FlightList flights={[]} onItemClick={() => {}} />)
     expect(
-      screen.getByText('Theres no flights available at this moment')
-    ).toBeInTheDocument();
-  });
+      screen.getByText('Theres no flights available at this moment'),
+    ).toBeInTheDocument()
+  })
 
   it('should show all flights', () => {
     const flights = [
@@ -32,15 +44,15 @@ describe('tests the FlightList component', () => {
         origin: 'CPV',
         destination: 'JPA',
       } as IFlight,
-    ];
-    render(<FlightList flights={flights} />);
+    ]
+    render(<FlightList flights={flights} onItemClick={() => {}} />)
 
     flights.map((flight) => {
-      expect(screen.getByText(flight.ident)).toBeInTheDocument();
-      expect(screen.getByText(flight.readableDeparture)).toBeInTheDocument();
-      expect(screen.getByText(flight.readableArrival)).toBeInTheDocument();
-      expect(screen.getByText(flight.origin)).toBeInTheDocument();
-      expect(screen.getByText(flight.destination)).toBeInTheDocument();
-    });
-  });
-});
+      expect(screen.getByText(`Flight: ${flight.ident}`)).toBeInTheDocument()
+      expect(screen.getByText(flight.readableDeparture)).toBeInTheDocument()
+      expect(screen.getByText(flight.readableArrival)).toBeInTheDocument()
+      expect(screen.getByText(flight.origin)).toBeInTheDocument()
+      expect(screen.getByText(flight.destination)).toBeInTheDocument()
+    })
+  })
+})

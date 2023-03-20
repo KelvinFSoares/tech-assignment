@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for tw-antd-start-react-ts/src/App.tsx</title>
+    <title>Code coverage report for tech-assignment/src/components/AircraftList/AircraftList.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../prettify.css" />
-    <link rel="stylesheet" href="../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">tw-antd-start-react-ts/src</a> App.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">tech-assignment/src/components/AircraftList</a> AircraftList.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,14 +32,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -104,58 +104,58 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import preview from '@/assets/preview/carbon.svg';
-import { Button } from 'antd';
-import themeConfig from './utils/utils';
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { FunctionComponent } from 'react'
+import { IAircraft } from '@/models/aircraft'
+import { AircraftCard } from '../AircraftCard/AircraftCard'
 &nbsp;
-function App() {
-  return (
-    &lt;div className="flex justify-center items-center flex-col h-screen space-y-5 bg-dark-purple"&gt;
-      &lt;h1 className="text-4xl font-bold text-linen text-center "&gt;
-        Hello World
-      &lt;/h1&gt;
-      &lt;Button
-        type="primary"
-        className=" bg-teal-600 border-teal-600 text-white font-bold rounded-none "
-      &gt;
-        Ant btn with a tailwind css styles
-      &lt;/Button&gt;
-      &lt;Button type="primary"&gt;Ant btn&lt;/Button&gt;
-      &lt;Button
-        type="primary"
-        style={{
-          background: themeConfig.theme.colors['slate-blue'],
-          borderColor: themeConfig.theme.colors['slate-blue'],
-        }}
-      &gt;
-        Ant btn with a javascript variable colors
-      &lt;/Button&gt;
-    &lt;/div&gt;
-  );
+type AircraftListProps = {
+  aircrafts: IAircraft[]
+  onItemClick: (aircraft: IAircraft) =&gt; void
 }
 &nbsp;
-export default App;
+export const AircraftList: FunctionComponent&lt;AircraftListProps&gt; = ({
+  aircrafts,
+  onItemClick,
+}) =&gt; {
+  const isAircraftListEmpty = aircrafts?.length === 0
+&nbsp;
+  return !aircrafts || isAircraftListEmpty ? (
+    &lt;p className="text-linen p-4 text-center"&gt;
+      Theres no aircrafts available at this moment
+    &lt;/p&gt;
+  ) : (
+    &lt;ul className="flex flex-col items-center p-4"&gt;
+      {aircrafts?.map((aircraft) =&gt; (
+        &lt;AircraftCard
+          aircraft={aircraft}
+          onClick={onItemClick}
+          key={`aircraft-${aircraft.ident}`}
+        /&gt;
+      ))}
+    &lt;/ul&gt;
+  )
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -163,16 +163,16 @@ export default App;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-15T19:15:53.524Z
+                at 2023-03-20T05:31:00.924Z
             </div>
-        <script src="../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../sorter.js"></script>
-        <script src="../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     
